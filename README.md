@@ -45,3 +45,16 @@ Clone the repository:
 ```bash
 git clone https://github.com/vox-zen/asterisk-custom-amd.git
 cd asterisk-custom-amd
+
+Tested on typical Linux Asterisk servers.
+
+---
+
+# Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/vox-zen/asterisk-custom-amd.git
+cd asterisk-custom-amd
+
