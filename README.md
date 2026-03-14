@@ -82,3 +82,9 @@ python3 --version
 
 Note:
 This AMD implementation requires EAGI, not standard AGI, because it needs access to the live audio stream from Asterisk.
+
+---
+
+# License
+
+MIT
