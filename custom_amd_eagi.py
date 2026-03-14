@@ -1,4 +1,3 @@
-#!/opt/ivrbot/venv/bin/python
 import os
 import sys
 import time
@@ -47,7 +46,7 @@ def main() -> int:
     FRAME_BYTES = 320
     SAMPLE_RATE = 8000
 
-    # Window analisa
+    # Analysis window
     MAX_SEC_AUDIO = 5.0
     WALL_TIMEOUT_SEC = 5.5
 
@@ -58,9 +57,9 @@ def main() -> int:
     RMS_MIN = 50
     MIN_VOICE_RUN_FRAMES = 2
 
-    # Gap untuk hitung segment speech selesai
+   # Gap to count speech segments completed
     SIL_GAP_FRAMES = int(300 / FRAME_MS)       # 300 ms
-    # Toleransi false negative VAD di dalam run speech
+    # False negative VAD tolerance in run speech
     RUN_BREAK_FRAMES = int(120 / FRAME_MS)     # 120 ms
 
     # Rule voicemail
@@ -131,7 +130,7 @@ def main() -> int:
             if voice_confirmed:
                 gap_run += 1
 
-                # Toleransi VAD miss singkat: tetap anggap bagian run yang sama
+                # Short miss VAD tolerance: still consider the same run section
                 if gap_run <= RUN_BREAK_FRAMES:
                     speech_frames += 1
                     confirmed_voice_run += 1
@@ -153,7 +152,7 @@ def main() -> int:
 
     else:
         # HUMAN:
-        # ucapan relatif pendek, run tidak panjang, dan ada tanda berhenti/jeda
+        # relatively short utterances, not long runs, and there are stop/pause signs
         if (
             speech_frames <= HUMAN_MAX_SPEECH_FRAMES and
             longest_confirmed_run <= HUMAN_MAX_RUN_FRAMES and
@@ -168,7 +167,7 @@ def main() -> int:
             )
 
         # MACHINE:
-        # greeting panjang / kontinu
+        # long / continuous greeting
         elif (
             longest_confirmed_run >= VM_LONG_RUN_FRAMES or
             (speech_frames >= VM_MIN_SPEECH_FRAMES and gaps <= 1)
