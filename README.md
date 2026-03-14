@@ -45,3 +45,12 @@ Clone the repository:
 ```bash
 git clone https://github.com/vox-zen/asterisk-custom-amd.git
 cd asterisk-custom-amd
+
+pip3 install -r requirements.txt
+
+sudo mkdir -p /opt/asterisk/custom_amd
+
+sudo cp custom_amd_eagi.py /opt/asterisk/custom_amd/
+sudo cp run_amd_eagi.sh /opt/asterisk/custom_amd/
+
+sudo chmod +x /opt/asterisk/custom_amd/run_amd_eagi.sh
