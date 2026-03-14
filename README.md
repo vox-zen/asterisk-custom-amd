@@ -45,3 +45,19 @@ Clone the repository:
 ```bash
 git clone https://github.com/vox-zen/asterisk-custom-amd.git
 cd asterisk-custom-amd
+
+Install Python dependency:
+pip3 install -r requirements.txt
+
+Create directory on your Asterisk server:
+sudo mkdir -p /opt/asterisk/custom_amd
+
+Copy the scripts:
+sudo cp custom_amd_eagi.py /opt/asterisk/custom_amd/
+sudo cp run_amd_eagi.sh /opt/asterisk/custom_amd/
+
+Make the runner executable:
+sudo chmod +x /opt/asterisk/custom_amd/run_amd_eagi.sh
+
+Verify Python installation:
+python3 --version
