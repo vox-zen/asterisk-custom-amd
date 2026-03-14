@@ -1,53 +1,47 @@
-## Features
-- Custom AMD for Asterisk using EAGI
+# Asterisk Custom AMD (Answering Machine Detection)
+
+Custom Answering Machine Detection (AMD) script for **Asterisk** using **EAGI** and **WebRTC VAD**.
+
+This project provides a lightweight and tunable AMD implementation designed for outbound IVR systems, voice bots, and automated calling platforms.
+
+The script analyzes realtime audio from Asterisk using EAGI and classifies the call as:
+
+- HUMAN
+- VOICEMAIL
+- UNKNOWN
+
+It exposes detection results through standard AGI variables so they can be used directly inside Asterisk dialplans.
+
+---
+
+# Features
+
+- Custom AMD for Asterisk using **EAGI**
 - WebRTC VAD based voice activity detection
-- Realtime classification for HUMAN / VOICEMAIL / UNKNOWN
-- Detailed AMDCAUSE output for tuning and debugging
+- Realtime classification for **HUMAN / VOICEMAIL / UNKNOWN**
+- Detailed `AMDCAUSE` output for tuning and debugging
+- Lightweight and easy to integrate with existing dialplans
+- Designed for outbound IVR / autodialer systems
 
-## Requirements
-- Asterisk with EAGI support
+---
+
+# Requirements
+
+Before using this script make sure your server has:
+
+- Asterisk (with **EAGI support**)
 - Python 3
-- webrtcvad
+- pip3
+- webrtcvad Python library
 
-- ## Installation
+Tested on typical Linux Asterisk servers.
+
+---
+
+# Installation
 
 Clone the repository:
 
 ```bash
 git clone https://github.com/vox-zen/asterisk-custom-amd.git
 cd asterisk-custom-amd
-
-pip3 install -r requirements.txt
-
-sudo mkdir -p /opt/asterisk/custom_amd
-sudo cp custom_amd_eagi.py /opt/asterisk/custom_amd/
-sudo cp run_amd_eagi.sh /opt/asterisk/custom_amd/
-sudo chmod +x /opt/asterisk/custom_amd/run_amd_eagi.sh
-
-python3 --version
-
-
----
-
-# Usage
-
-Tambahkan ini **setelah installation**.
-
-```md
-## Usage
-
-Call the AMD script from your Asterisk dialplan using **EAGI**.
-
-Example:
-
-
-## Files
-- `custom_amd_eagi.py` - main AMD detection script
-- `run_amd_eagi.sh` - shell wrapper for EAGI
-- `requirements.txt` - Python dependencies
-- `extensions.conf.example` - minimal dialplan example
-
-## Output Variables
-- `AMD_NOTIFY` = HUMAN | VOICEMAIL | UNKNOWN
-- `AMDSTATUS` = HUMAN | MACHINE | NOTSURE
-- `AMDCAUSE` = detailed detection reason
