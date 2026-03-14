@@ -1,0 +1,14 @@
+[custom-amd-test]
+exten => s,1,Answer()
+ same => n,Playback(silence/1)
+ same => n,Wait(1)
+ same => n,EAGI(/opt/asterisk/custom_amd/run_amd_eagi.sh)
+ same => n,NoOp(AMD_NOTIFY=${AMD_NOTIFY})
+ same => n,NoOp(AMDSTATUS=${AMDSTATUS})
+ same => n,NoOp(AMDCAUSE=${AMDCAUSE})
+ same => n,GotoIf($["${AMD_NOTIFY}"="VOICEMAIL"]?vm:human)
+
+ same => n(human),Playback(hello-world)
+ same => n,Hangup()
+
+ same => n(vm),Hangup()
